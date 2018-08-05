@@ -29,5 +29,4 @@ class IsbnVerifier
     end
   end
 
-  self.valid?("359821507X")
 end
