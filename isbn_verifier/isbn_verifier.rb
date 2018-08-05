@@ -3,7 +3,11 @@ class IsbnVerifier
     isbn.gsub!(/-/, "")
     if (isbn.length == 10) then
       # correct length
-      check = isbn.slice(0).to_i * 10 + isbn.slice(1).to_i * 9 + isbn.slice(2).to_i * 8 + isbn.slice(3).to_i * 7 + isbn.slice(4).to_i * 6 + isbn.slice(5).to_i * 5 + isbn.slice(6).to_i * 4 + isbn.slice(7).to_i * 3 + isbn.slice(8).to_i * 2
+      check = 0
+      for i in 0..8
+        # calculate checksum not including last digit
+        check += isbn.slice(i).to_i * (10 - i)
+      end
       if (isbn.slice(9) == "X" || isbn.slice(9) == "x") then
         # last digit is an x or X
         check += 10
